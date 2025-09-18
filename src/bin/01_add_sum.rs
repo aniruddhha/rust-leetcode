@@ -2,7 +2,7 @@ struct Solution;
 
 // impl Solution {
 //     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        
+
 //         // 2 <= nums.length <= 104
 //         if nums.len() < 2 {
 //             return Vec::<i32>::new();
@@ -31,23 +31,22 @@ struct Solution;
 
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-
         use std::collections::HashMap;
 
         let mut map = HashMap::new();
 
-        for (ind, el)  in nums.iter().enumerate() {
-            map.insert(ind, el);
+        for (ind, el) in nums.iter().enumerate() {
+            map.insert(el, ind);
         }
 
-       for (ind, el)  in nums.iter().enumerate() {
-          let complement = (target - el) as usize;
+        for (ind, el) in nums.iter().enumerate() {
+            let complement = target - el;
 
-
-          let el_cpm = map.get(&complement).unwrap();
-          if map.contains_key(&complement) && (**el_cpm != (ind as i32) ) {
-            return vec![ind as i32, **el_cpm];
-          }
+            if let Some(el_cpm) = map.get(&complement) {
+                if map.contains_key(&complement) && (*el_cpm !=ind) {
+                    return vec![ind as i32, *el_cpm as i32];
+                }
+            }
         }
 
         vec![]
@@ -55,18 +54,16 @@ impl Solution {
 }
 
 fn main() {
-
     assert_eq!(Solution::two_sum(vec![2, 7, 11, 15], 9), vec![0, 1]);
     assert_eq!(Solution::two_sum(vec![3, 2, 4], 6), vec![1, 2]);
     assert_eq!(Solution::two_sum(vec![5, 1, 8, 2], 10), vec![2, 3]);
     assert_eq!(Solution::two_sum(vec![1, 5, 3], 4), [0, 2]);
     assert_eq!(Solution::two_sum(vec![1, 2, 3], 100), Vec::<i32>::new());
 
-      // single element
+    // single element
     assert_eq!(Solution::two_sum(vec![42], 42), Vec::<i32>::new());
-        // two elements that match
+    // two elements that match
     assert_eq!(Solution::two_sum(vec![1, 2], 3), vec![0, 1]);
-        // two elements that don't match
+    // two elements that don't match
     assert_eq!(Solution::two_sum(vec![1, 2], 5), Vec::<i32>::new());
-
 }
