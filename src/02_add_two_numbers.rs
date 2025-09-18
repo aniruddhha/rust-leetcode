@@ -14,15 +14,11 @@ impl ListNode {
     }
   }
 }
+
+
+
 impl Solution {
     pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
 
     }
 }
-
-fn main() {
-
-    assert_eq!(
-        Solution::add_two_numbers(Some(Box::new(ListNode::new(2))), Some(Box::new(ListNode::new(3)))), Some(Box::new(ListNode::new(5)))
-    );
-}   
